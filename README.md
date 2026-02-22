@@ -4,15 +4,20 @@
 
 For this project, I built a home lab environment in VirtualBox that simulates a real-world corporate network using Active Directory. I provisioned a server on a virtual machine, installed Active Directory, and established my own domain. The virtual machine was configured with two network adapters: one to connect to the external internet and another to connect to the VirtualBox private network that client machines will use. After the virtual machine was set up, I installed Windows Server 2019 and assigned IP addressing for the internal network. The external network automatically receives IP addressing from my home router.
 
-From there, I configured NAT and routing to allow clients on the private network to reach the internet through the domain controller. I then set up DHCP on the domain controller so that any new client machine added to the network can automatically receive an IP address. Before creating the CLIENT1 virtual machine, I ran a PowerShell script that automatically generates one thousand user accounts in Active Directory. 
+From there, I configured NAT and routing to allow clients on the private network to reach the internet through the domain controller. I then set up DHCP on the domain controller so that any new client machine added to the network can automatically receive an IP address. Before creating the CLIENT1 virtual machine, I ran a PowerShell script that automatically generates one thousand user accounts in Active Directory. Bellow is a visualization of what I will be doing in this lab.
+
+<img width="1299" height="768" alt="Outline" src="https://github.com/user-attachments/assets/fedd228e-450d-4cdb-a39f-658b6a0a55fd" />
 
 ---
 
 ## Stage 1: Installing Windows Server 2019 & Configuring Active Directory
 
-After installing Windows Server 2019, the first task was to assign IP addressing. I navigated to **Change Adapter Settings**, right-clicked the internal network adapter, selected **Properties**, and double-clicked **Internet Protocol Version 4 (TCP/IPv4)** to open its properties. From there, I selected **Use the following IP addresses** and entered the appropriate values as illustrated in the diagram.
+After installing Windows Server 2019, the first task was to assign IP addressing. I navigated to **Settings** -> **Network & Internet** -> **Status**. On the bottom of the window you will see the option **Change Adapter Options**. After clicking this option I was brought to the **Network Connections** window. From here I right-clicked the internal network adapter named (x_Internal_x), selected **Properties**, and double-clicked **Internet Protocol Version 4 (TCP/IPv4)** to open its properties. Next I selected **Use the following IP addresses** and entered the appropriate values as illustrated in the diagram.
 
-It is worth noting that no default gateway was assigned here, because the domain controller itself will serve as the default gateway for the network. Regarding DNS, installing Active Directory will automatically install DNS as well, meaning the server will reference itself as the DNS server. To configure this, I used the loopback address `127.0.0.1`.
+<img width="752" height="538" alt="Assigning ip adress to internal NIC" src="https://github.com/user-attachments/assets/3dcc82e5-081a-4642-8e2b-048619cd9cfd" />
+
+
+No default gateway was assigned to the internal network adapter because the domain controller will fulfill that role itself — routing traffic between the internal network and the internet. As for DNS, Active Directory requires DNS to function and will automatically install it during setup, so rather than pointing to an external DNS server, the domain controller points to itself. This is done by entering the loopback address `127.0.0.1` as the DNS server, which simply means "use this machine."
 
 The next step was to install Active Directory. I navigated to **Add Roles and Features** from the Server Manager dashboard, accepted the default settings, and clicked **Next** until reaching the **Server Roles** section. I checked the box for **Active Directory Domain Services**, which opened a prompt to add the required features. After clicking **Add Feature** and proceeding through the wizard with default configurations, I clicked **Install**.
 
