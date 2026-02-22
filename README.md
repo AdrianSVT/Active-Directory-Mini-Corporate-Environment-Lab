@@ -118,7 +118,19 @@ To complete the setup, the DHCP server, **dc.mydomain.com**, needed to be author
 
 ### Creating a User Account Manually
 
-To create a user account manually, I followed the same process used when setting up the dedicated domain admin account in Stage 1. I started by creating an organizational unit called `Domain Users` to store the accounts. I then right-clicked the newly created OU, selected **New**, then **User**, and filled out the required information in the **New Object - User** window, including the user's first name, last name, logon name, and password. The new user account was successfully created.
+To create a user account manually, I followed the same process used when setting up the dedicated domain admin account in Stage 1. I started by creating an organizational unit called `Domain Users` to store the accounts. 
+
+<img width="244" height="214" alt="Creating of Domain Users OU" src="https://github.com/user-attachments/assets/3c4cb9ff-374b-4101-a311-f96c7c79dca1" />
+
+I then right-clicked the newly created OU, selected **New**, then **User**, and filled out the required information in the **New Object - User** window, including the user's first name, last name, logon name, and password. The new user account was successfully created.
+
+
+<img width="227" height="197" alt="New Object User " src="https://github.com/user-attachments/assets/766e7c95-6a9e-4e62-af51-be095ce595eb" />
+
+<img width="228" height="200" alt="New Object User Password" src="https://github.com/user-attachments/assets/71c0869f-a9d2-4d51-ae2d-87602868cf56" />
+
+<img width="267" height="166" alt="Manual first user created" src="https://github.com/user-attachments/assets/44152892-6b36-4b76-b1ba-8e89d7246b45" />
+
 
 ### Bulk User Creation with PowerShell
 
