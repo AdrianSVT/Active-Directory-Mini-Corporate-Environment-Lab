@@ -24,7 +24,6 @@ The next step was to install Active Directory. I navigated to **Add Roles and Fe
 <img width="433" height="353" alt="Applied Active Directory Domain Services" src="https://github.com/user-attachments/assets/6fae95b1-fa6d-4228-a7bb-95c84a1e5c23" />
 
  After clicking **Add Feature** and proceeding through the rest of the wizard with default configurations, I clicked **Install** at the End.
-
 <img width="427" height="322" alt="Installing Active Directory" src="https://github.com/user-attachments/assets/8803af4f-839f-4095-bff3-0f2d4396df66" />
  
 Once the installation completed, a **Post-Deployment Configuration** was required to promote the server to a domain controller. 
@@ -51,15 +50,9 @@ I then created a new user within that OU and assigned a password. To create a ne
 
 <img width="583" height="416" alt="Creating New Admin User compleation" src="https://github.com/user-attachments/assets/1acfa093-073e-4899-a006-717625d3537b" />
 
-
-
-
 To grant admin privileges, I opened the user's properties, navigated to the **Member Of** tab, and clicked **Add**. I entered `domain admins` as the object name, clicked **Check Names** to resolve it to `Domain Admins`, and applied the change. The user was now a member of the Domain Admins group. I logged out of the domain controller and signed back in using the newly created domain admin account.
 
 <img width="220" height="288" alt="NEW Admin user properties" src="https://github.com/user-attachments/assets/82fdb008-1e69-4042-8c5d-611f79721d84" />
-
-
-
 
 ---
 
@@ -67,9 +60,17 @@ To grant admin privileges, I opened the user's properties, navigated to the **Me
 
 With the domain controller in place, the next stage was to configure NAT and routing. This is a critical step because it enables client machines on the internal private network to access the internet by routing their traffic through the domain controller, just as traffic would flow through a router on a corporate network.
 
-To set this up, I returned to the Server Manager dashboard and launched **Add Roles and Features**. Once I reached the **Server Roles** section, I checked the box for **Remote Access** and continued to the **Role Services** section, where I also checked **Routing**. After proceeding through the remaining steps, I clicked **Install**.
+To set this up, I returned to the Server Manager dashboard and launched **Add Roles and Features**. The **Add Roles and Features Wizard** should pop up again. Once I reached the **Server Roles** section, I checked the box for **Remote Access** and continued to the **Role Services** section, where I also checked **Routing**. After proceeding through the remaining steps, I clicked **Install**.
 
-Once the installation was complete, I navigated to **Tools** and selected **Routing and Remote Access** from the drop-down menu. I right-clicked **DC(local)** and chose **Configure and Enable Routing and Remote Access**. Within the setup wizard, I selected **Network Address Translation (NAT)** and on the following page, chose **Use this public interface to connect to the Internet**. After completing the wizard, NAT was fully configured.
+<img width="416" height="308" alt="Adding NAT through wizard" src="https://github.com/user-attachments/assets/2ed39d1a-0e11-460a-b5da-da4fac8a6b1a" />
+
+
+Once the installation was complete, I navigated to **Tools** and selected **Routing and Remote Access** from the drop-down menu. 
+I right-clicked **DC(local)** and chose **Configure and Enable Routing and Remote Access**. Within the setup wizard, I selected **Network Address Translation (NAT)** and on the following page, chose **Use this public interface to connect to the Internet**. After completing the wizard, NAT was fully configured.
+
+<img width="416" height="309" alt="Right click-Configure routing and remote access" src="https://github.com/user-attachments/assets/41972e1a-e423-4785-ab0b-fcd5943558dd" />
+
+<img width="422" height="323" alt="Remote accces set wizard-NAT selected" src="https://github.com/user-attachments/assets/0a02effc-9a69-4938-ad9c-52dae45292fb" />
 
 ---
 
@@ -77,13 +78,38 @@ Once the installation was complete, I navigated to **Tools** and selected **Rout
 
 With routing in place, the next step was to configure the DHCP server on the domain controller. This allows client machines to automatically receive an IP address when they join the network, enabling them to communicate and access the internet without any manual configuration.
 
-I navigated to **Add Roles and Features** on the Server Manager dashboard, checked the **DHCP** box under **Server Roles**, and proceeded through the wizard to install it. After installation, I went to **Tools** and selected **DHCP** from the drop-down menu.
+I navigated to **Add Roles and Features** on the **Server Manager Dashboard**, The **Add Roles and Features Wizard** should pop up once again. I checked the **DHCP** box under **Server Roles**. I then proceeded through the rest of the wizard with default configurations, I clicked **Install** at the End. 
+
+<img width="404" height="290" alt="Add roles and features wizard DHCP server box" src="https://github.com/user-attachments/assets/94eb4a7d-0e8d-49f6-be28-36fdb0ffa82b" />
+
+Once installation was completed, I went to **Tools** and selected **DHCP** from the drop-down menu. A DHCP Control Panel Should Pop Up.
 
 ### Setting Up the DHCP Scope
 
-From the DHCP control panel, I right-clicked **IPv4** and selected **New Scope**. I named the scope `172.16.0.100 - 200` to reflect its IP range, and in the following window, defined the address range as `172.16.0.100 - 200` with a `/24` prefix. Since this is a practice lab, I skipped the exclusion range window. I left the lease duration at the default of 8 days and proceeded to the DHCP options configuration.
+From the DHCP control panel, I expanded **dc.mydomain.com** and right-clicked **IPv4** -> **New Scope**. 
 
-Here, I set the default gateway to the domain controller's IP address (`172.16.0.1`), since it will be acting as the gateway for the internal network. The DNS settings were left as suggested by the wizard. On the final page, I chose to activate the scope immediately and clicked **Finish**.
+<img width="446" height="341" alt="DHCP riight click on new scope" src="https://github.com/user-attachments/assets/59530a9f-82d6-42bc-a662-ad7e3ab8202d" />
+
+I named the scope `172.16.0.100 - 200` to reflect its IP range
+
+<img width="266" height="221" alt="Scope Naming" src="https://github.com/user-attachments/assets/5d60d906-c649-46b5-9fa8-d42b3158d192" />
+
+In the following window, I defined the address range as `172.16.0.100 - 200` with a `/24` prefix. Since this is a practice lab, I skipped the exclusion range window. 
+
+<img width="275" height="230" alt="defining dhcp scope" src="https://github.com/user-attachments/assets/7c6d1479-8dda-466a-b960-86d6eb857f83" />
+
+In the following page, I left the lease duration at the default of 8 days and proceeded to the DHCP options configuration.
+
+<img width="275" height="227" alt="Configure DHCP Options" src="https://github.com/user-attachments/assets/2e33d668-f4aa-40d7-b8c0-86dfb8e27df0" />
+
+Here, I set the default gateway to the domain controller's IP address (`172.16.0.1`), since it will be acting as the gateway for the internal network. 
+
+<img width="279" height="227" alt="Defining the default gateway" src="https://github.com/user-attachments/assets/a1a10820-4d90-4def-b1ed-9c403efdf155" />
+
+
+
+
+The DNS settings were left as suggested by the wizard. On the final page, I chose to activate the scope immediately and clicked **Finish**.
 
 To complete the setup, the DHCP server needed to be authorized before it could begin assigning IP addresses. I right-clicked the DHCP server and selected **Authorize**. The DHCP server was now fully configured and ready to serve client machines.
 
