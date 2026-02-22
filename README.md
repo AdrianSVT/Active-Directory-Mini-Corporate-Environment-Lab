@@ -35,13 +35,20 @@ In the configuration wizard, I selected **Add a new forest** and created a root 
 
 <img width="425" height="311" alt="Setting forest and addiing root domain name" src="https://github.com/user-attachments/assets/58f63f69-6cdb-462c-b14c-5dd9e4407fbd" />
 
-
-
 ### Creating a Dedicated Domain Admin Account
 
 With the domain controller set up, I created a dedicated domain admin account. I opened **Active Directory Users and Computers** and created an organizational unit called `_ADMINS` to house the admin account. I then created a new user within that OU and assigned a password.
 
+<img width="713" height="518" alt="Creating Organizational Unit 1" src="https://github.com/user-attachments/assets/3bd785c8-ca84-412d-86df-56d2600c8a55" />
+
+<img width="612" height="438" alt="Creating Organizational Unit 2 _ADMINS" src="https://github.com/user-attachments/assets/2c28579e-244b-41e2-87ad-8da5b0c3ab20" />
+
 To grant admin privileges, I opened the user's properties, navigated to the **Member Of** tab, and clicked **Add**. I entered `domain admins` as the object name, clicked **Check Names** to resolve it to `Domain Admins`, and applied the change. The user was now a member of the Domain Admins group. I logged out of the domain controller and signed back in using the newly created domain admin account.
+
+<img width="220" height="288" alt="NEW Admin user properties" src="https://github.com/user-attachments/assets/82fdb008-1e69-4042-8c5d-611f79721d84" />
+
+
+
 
 ---
 
