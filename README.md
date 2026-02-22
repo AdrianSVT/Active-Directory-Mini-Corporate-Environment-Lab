@@ -26,9 +26,16 @@ The next step was to install Active Directory. I navigated to **Add Roles and Fe
  After clicking **Add Feature** and proceeding through the rest of the wizard with default configurations, I clicked **Install** at the End.
 
 <img width="427" height="322" alt="Installing Active Directory" src="https://github.com/user-attachments/assets/8803af4f-839f-4095-bff3-0f2d4396df66" />
-
  
-Once the installation completed, a **Post-Deployment Configuration** was required to promote the server to a domain controller. In the configuration wizard, I selected **Add a new forest** and created a root domain named `mydomain.com`. The remaining wizard settings were left at their defaults before finalizing the installation.
+Once the installation completed, a **Post-Deployment Configuration** was required to promote the server to a domain controller. 
+
+<img width="232" height="199" alt="Promoting server to domain controller notification" src="https://github.com/user-attachments/assets/e076ce26-918d-4ce0-b97c-995815fcf690" />
+
+In the configuration wizard, I selected **Add a new forest** and created a root domain named `mydomain.com`. After proceeding through the rest of the wizard with default configurations, I clicked **Install** at the End.
+
+<img width="425" height="311" alt="Setting forest and addiing root domain name" src="https://github.com/user-attachments/assets/58f63f69-6cdb-462c-b14c-5dd9e4407fbd" />
+
+
 
 ### Creating a Dedicated Domain Admin Account
 
