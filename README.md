@@ -43,6 +43,17 @@ With the domain controller set up, I created a dedicated domain admin account. I
 
 <img width="612" height="438" alt="Creating Organizational Unit 2 _ADMINS" src="https://github.com/user-attachments/assets/2c28579e-244b-41e2-87ad-8da5b0c3ab20" />
 
+I then created a new user within that OU and assigned a password. To create a new user I right clicked on **_ADMINS** -> **New** -> **User**. Once I was brought to the **New Object - User** window I populated the first name, last name, Full name, and logon name. I Then assigned a password for the Account.
+
+<img width="602" height="438" alt="established admin user properties " src="https://github.com/user-attachments/assets/cc83ce1e-9a3d-46dc-b2ae-656323d8d2cc" />
+
+<img width="595" height="419" alt="Creating New Admin User with password" src="https://github.com/user-attachments/assets/95f2a54e-5268-4c70-ab91-61396128cf6a" />
+
+<img width="583" height="416" alt="Creating New Admin User compleation" src="https://github.com/user-attachments/assets/1acfa093-073e-4899-a006-717625d3537b" />
+
+
+
+
 To grant admin privileges, I opened the user's properties, navigated to the **Member Of** tab, and clicked **Add**. I entered `domain admins` as the object name, clicked **Check Names** to resolve it to `Domain Admins`, and applied the change. The user was now a member of the Domain Admins group. I logged out of the domain controller and signed back in using the newly created domain admin account.
 
 <img width="220" height="288" alt="NEW Admin user properties" src="https://github.com/user-attachments/assets/82fdb008-1e69-4042-8c5d-611f79721d84" />
