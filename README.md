@@ -4,7 +4,7 @@
 
 For this project, I built a home lab environment in VirtualBox that simulates a real-world corporate network using Active Directory. I provisioned a server on a virtual machine, installed Active Directory, and established my own domain. The virtual machine was configured with two network adapters: one to connect to the external internet and another to connect to the VirtualBox private network that client machines will use. After the virtual machine was set up, I installed Windows Server 2019 and assigned IP addressing for the internal network. The external network automatically receives IP addressing from my home router.
 
-From there, I configured NAT and routing to allow clients on the private network to reach the internet through the domain controller. I then set up DHCP on the domain controller so that any new client machine added to the network can automatically receive an IP address. Before creating the client virtual machine, I ran a PowerShell script that automatically generates one thousand user accounts in Active Directory. I also demonstrated how to create administrative units, users, groups, and assign permissions.
+From there, I configured NAT and routing to allow clients on the private network to reach the internet through the domain controller. I then set up DHCP on the domain controller so that any new client machine added to the network can automatically receive an IP address. Before creating the CLIENT1 virtual machine, I ran a PowerShell script that automatically generates one thousand user accounts in Active Directory. 
 
 ---
 
