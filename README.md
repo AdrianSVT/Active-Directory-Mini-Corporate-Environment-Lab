@@ -19,8 +19,15 @@ After installing Windows Server 2019, the first task was to assign IP addressing
 
 No default gateway was assigned to the internal network adapter because the domain controller will fulfill that role itself — routing traffic between the internal network and the internet. As for DNS, Active Directory requires DNS to function and will automatically install it during setup, so rather than pointing to an external DNS server, the domain controller points to itself. This is done by entering the loopback address `127.0.0.1` as the DNS server, which simply means "use this machine."
 
-The next step was to install Active Directory. I navigated to **Add Roles and Features** from the Server Manager dashboard, accepted the default settings, and clicked **Next** until reaching the **Server Roles** section. I checked the box for **Active Directory Domain Services**, which opened a prompt to add the required features. After clicking **Add Feature** and proceeding through the wizard with default configurations, I clicked **Install**.
+The next step was to install Active Directory. I navigated to **Add Roles and Features** from the **Server Manager Dashboard**. A new window called **Add Roles and Features Wizard** should pop up. I accepted the default settings of the wizard, and clicked **Next** until reaching the **Server Roles** section. I checked the box for **Active Directory Domain Services**, which opened a prompt to add the required features.
 
+<img width="433" height="353" alt="Applied Active Directory Domain Services" src="https://github.com/user-attachments/assets/6fae95b1-fa6d-4228-a7bb-95c84a1e5c23" />
+
+ After clicking **Add Feature** and proceeding through the rest of the wizard with default configurations, I clicked **Install** at the End.
+
+<img width="427" height="322" alt="Installing Active Directory" src="https://github.com/user-attachments/assets/8803af4f-839f-4095-bff3-0f2d4396df66" />
+
+ 
 Once the installation completed, a **Post-Deployment Configuration** was required to promote the server to a domain controller. In the configuration wizard, I selected **Add a new forest** and created a root domain named `mydomain.com`. The remaining wizard settings were left at their defaults before finalizing the installation.
 
 ### Creating a Dedicated Domain Admin Account
