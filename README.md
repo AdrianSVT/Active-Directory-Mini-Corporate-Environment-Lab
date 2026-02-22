@@ -136,15 +136,26 @@ I then right-clicked the newly created OU, selected **New**, then **User**, and 
 
 To simulate a real enterprise environment, I also used a PowerShell script to generate one thousand user accounts in bulk. The script references a `names.txt` file containing one thousand randomized names, which it uses to create a corresponding user account for each entry.
 
+<img width="498" height="365" alt="PowerShell script screenshot" src="https://github.com/user-attachments/assets/e9220093-4fe9-41bf-b513-1d128ab6a064" />
+
 I launched **PowerShell ISE** as an administrator and first enabled script execution on the server by running the following command:
 
 ```powershell
 Set-ExecutionPolicy Unrestricted
 ```
 
-I then navigated to the directory containing the script and the `names.txt` file to ensure the script could locate and read from it. With everything in place, I ran the script.
+<img width="365" height="224" alt="setting execution poliicy to unrestricted " src="https://github.com/user-attachments/assets/ff652fd8-3187-4c23-b38f-0769279cdab3" />
+
+I then navigated to the directory containing the script and the `names.txt` file to ensure the script could locate and read from it cd `c:\users\a-vergara\desktop\AD_PS-Master`. With everything in place, I ran the script.
+
+<img width="307" height="43" alt="going to the directory where the script is at" src="https://github.com/user-attachments/assets/ed86bd32-b0d0-424a-803a-da338f461054" />
+
+<img width="260" height="454" alt="Bulk creation of users" src="https://github.com/user-attachments/assets/57848297-03bc-4fb8-94bc-4909d8d1746a" />
 
 To verify the results, I navigated to **Active Directory Users and Computers** where I could see that the script had created a new organizational unit called `_USERS`, populated with all one thousand newly created accounts.
+
+<img width="296" height="434" alt="New _USERS OU and bulk users created" src="https://github.com/user-attachments/assets/ee64a2d4-49ac-41ee-8251-da4c44d40b84" />
+
 
 ---
 
@@ -164,11 +175,14 @@ I ran the following command in the command prompt on CLIENT1:
 ```cmd
 ipconfig /all
 ```
+<img width="339" height="259" alt="Checking CLIENT1 ipconfig" src="https://github.com/user-attachments/assets/2c902f2d-c777-4f59-9a3d-3990c3be5ef8" />
 
 The output confirmed that the machine had received the correct default gateway (`172.16.0.1`), that DHCP was enabled, and that the DNS suffix matched the domain (`mydomain.com`).
 
 **Method 2 — DHCP Address Leases on the Domain Controller:**
-I opened the DHCP console from the **Tools** menu on the domain controller, navigated to **IPv4**, and selected **Address Leases**. CLIENT1 appeared in the list and had been assigned an IP address from the DHCP scope, confirming that the DHCP server was working as expected.
+I opened the **DHCP Control Panel** from the **Tools** drop down menu by clicking **DHCP** on the Server Manager Dashboard -> expanded **dc.mydomain.com** -> expanded **IPv4** -> expanded **Scope** and selected **Address Leases**. CLIENT1 appeared in the list and had been assigned an IP address from the DHCP scope, confirming that the DHCP server was working as expected.
+
+<img width="482" height="102" alt="Address lease for CLIENT1 machine " src="https://github.com/user-attachments/assets/46f35371-f7b6-41e6-a297-46f031f6f387" />
 
 ### Testing Internet Connectivity
 
@@ -177,13 +191,26 @@ I tested internet connectivity by running a ping to `www.google.com` from CLIENT
 ```cmd
 ping www.google.com
 ```
+<img width="242" height="93" alt="succesful ping of google" src="https://github.com/user-attachments/assets/7b147824-65e9-4f80-83e1-3123abd429ee" />
 
 The ping returned successful replies, confirming that the domain controller is correctly routing internet traffic for machines on the internal network.
 
 ### Joining the Domain
 
-The final step was to rename the machine and join it to the domain. I navigated to **Settings → System → About** and clicked **Rename this PC (Advanced)**. In the **System Properties** window, I clicked **Change**, updated the computer name to `CLIENT1`, and entered `mydomain.com` as the domain to join. When prompted, I provided the credentials of a domain account with permission to join the domain.
+The final step was to rename the machine and join it to the domain. I navigated to **Settings → System → About** and clicked **Rename this PC (Advanced)**. 
+
+<img width="407" height="320" alt="setting rename this pc advanced" src="https://github.com/user-attachments/assets/10c952f9-5c6b-42f3-9271-1d5abece10e5" />
+
+In the **System Properties** window, I clicked **Change**, updated the computer name to `CLIENT1`, and entered `mydomain.com` as the domain to join. 
+
+<img width="391" height="248" alt="changing domain and hostname" src="https://github.com/user-attachments/assets/a20274b1-bafc-4175-9cd3-030d37a913dc" />
+
+When prompted, I provided the credentials of a domain account with permission to join the domain.
+
+<img width="235" height="156" alt="permission to join the domain" src="https://github.com/user-attachments/assets/dc855745-96d4-485f-9679-882d9b6cf623" />
 
 To confirm successful enrollment, I navigated to **Active Directory Users and Computers** on the domain controller, expanded `mydomain.com`, and clicked **Computers**. CLIENT1 appeared in the list, confirming it had been successfully joined to the domain.
+
+<img width="293" height="178" alt="checking computer for domain joining" src="https://github.com/user-attachments/assets/b047ee8b-810a-4e9f-9ecd-b79988cecc61" />
 
 With that, the home lab was complete — a fully functional mini corporate network built from the ground up.
