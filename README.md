@@ -98,7 +98,7 @@ In the following window, I defined the address range as `172.16.0.100 - 200` wit
 
 <img width="275" height="230" alt="defining dhcp scope" src="https://github.com/user-attachments/assets/7c6d1479-8dda-466a-b960-86d6eb857f83" />
 
-In the following page, I left the lease duration at the default of 8 days and proceeded to the DHCP options configuration.
+In the following page, I left the lease duration at the default of 8 days and proceeded to the DHCP options configuration. I chose **Yes, I want to configure these options now**. The wizard navigated me to the next page.
 
 <img width="275" height="227" alt="Configure DHCP Options" src="https://github.com/user-attachments/assets/2e33d668-f4aa-40d7-b8c0-86dfb8e27df0" />
 
@@ -106,12 +106,11 @@ Here, I set the default gateway to the domain controller's IP address (`172.16.0
 
 <img width="279" height="227" alt="Defining the default gateway" src="https://github.com/user-attachments/assets/a1a10820-4d90-4def-b1ed-9c403efdf155" />
 
+The DNS settings were left as suggested by the wizard after I clicked **Next**. On the final page, I chose to activate the scope immediately and clicked **Finish**.
 
+To complete the setup, the DHCP server, **dc.mydomain.com**, needed to be authorized before it could begin assigning IP addresses. I right-clicked **dc.mydomain.com** and selected **Authorize**. The DHCP server was now fully configured and ready to serve client machines.
 
-
-The DNS settings were left as suggested by the wizard. On the final page, I chose to activate the scope immediately and clicked **Finish**.
-
-To complete the setup, the DHCP server needed to be authorized before it could begin assigning IP addresses. I right-clicked the DHCP server and selected **Authorize**. The DHCP server was now fully configured and ready to serve client machines.
+<img width="164" height="220" alt="Authorize DCHP" src="https://github.com/user-attachments/assets/494b6b92-402d-4e1d-921b-995b4e797215" />
 
 ---
 
