@@ -140,6 +140,8 @@ To verify the results, I navigated to **Active Directory Users and Computers** w
 
 To complete the lab, I created a virtual machine called **CLIENT1** running Windows 10 Pro to simulate an endpoint device joining the corporate network. The VM's network adapter was set to connect to the **Internal Network**, placing it on the same private network as the domain controller.
 
+<img width="588" height="383" alt="Enable network adapter for Cliient 1" src="https://github.com/user-attachments/assets/c461642b-f053-4a46-8cd5-5b05e100f1b8" />
+
 ### Verifying the Connection
 
 Once the OS booted, I verified the connection to the domain controller in two ways.
