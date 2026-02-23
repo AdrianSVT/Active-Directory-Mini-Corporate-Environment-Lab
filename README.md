@@ -24,6 +24,7 @@ The next step was to install Active Directory. I navigated to **Add Roles and Fe
 <img width="433" height="353" alt="Applied Active Directory Domain Services" src="https://github.com/user-attachments/assets/6fae95b1-fa6d-4228-a7bb-95c84a1e5c23" />
 
  After clicking **Add Feature** and proceeding through the rest of the wizard with default configurations, I clicked **Install** at the End.
+
 <img width="427" height="322" alt="Installing Active Directory" src="https://github.com/user-attachments/assets/8803af4f-839f-4095-bff3-0f2d4396df66" />
  
 Once the installation completed, a **Post-Deployment Configuration** was required to promote the server to a domain controller. 
