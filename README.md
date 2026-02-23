@@ -37,7 +37,7 @@ In the configuration wizard, I selected **Add a new forest** and created a root 
 
 ### Creating a Dedicated Domain Admin Account
 
-With the domain controller set up, I created a dedicated domain admin account. I opened **Active Directory Users and Computers** and created an organizational unit called `_ADMINS` to house the admin account. I then created a new user within that OU and assigned a password.
+With the domain controller set up, I created a dedicated domain admin account. I opened **Active Directory Users and Computers** and created an organizational unit called `_ADMINS` to house the admin account. I right-clicked `mydomain.com` and selected **New → Organizational Unit**. I then created a new user within that OU and assigned a password.
 
 <img width="713" height="518" alt="Creating Organizational Unit 1" src="https://github.com/user-attachments/assets/3bd785c8-ca84-412d-86df-56d2600c8a55" />
 
